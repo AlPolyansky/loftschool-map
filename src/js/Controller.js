@@ -20,7 +20,23 @@ export default class Controller {
   initMapEvents(){
     Model.map.events.add('click', function (e) {
       Model.clickCords = e.get("coords");
-      View.addMarker(Model.map,Model.clickCords);
+      Model.mouseCords = [
+        e.get('domEvent').get('pageX'),
+        e.get('domEvent').get('pageY')
+      ];
+
+      View.addMarker(
+        Model.map,
+        Model.clickCords,
+      {
+        balloonContent: '123'
+      }
+      );
+
+      View.render(document.querySelector('.reviews'),'review',{});
+      let review = document.querySelector('.review');
+      review.style.left = Math.floor(Model.mouseCords[0]) + 'px';
+      review.style.top = Math.floor(Model.mouseCords[1])  + 'px';
     });
   }
 

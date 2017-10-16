@@ -7,6 +7,7 @@ export default class Model {
     this.mapData = mapData || {};
     this.map = null;
     this._clickCords = [];
+    this._mouseCords = [];
   }
 
   initMapData(params) {
@@ -22,6 +23,14 @@ export default class Model {
 
   set clickCords(value){
     this._clickCords = value;
+  };
+
+  set mouseCords(value){
+    this._mouseCords = value;
+  };
+
+  get mouseCords(){
+    return this._mouseCords;
   };
 
   get clickCords(){
