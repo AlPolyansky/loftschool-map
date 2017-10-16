@@ -6,35 +6,36 @@ let loaders = require('./webpack.config.loaders')();
 let path = require('path');
 
 loaders.push({
-    test: /\.css$/,
+    test: /\.scss$/,
     loader: ExtractTextPlugin.extract({
-        fallbackLoader: 'style-loader',
-        loader: 'css-loader'
+      use: ['css-loader', 'autoprefixer-loader?browsers=last 2 versions', 'sass-loader?sourceMap'],
+      fallbackLoader: 'style-loader'
     })
-});
+  }
+);
 
 module.exports = {
-    entry: './src/index.js',
-    output: {
-        filename: '[name].js',
-        path: path.resolve('dist')
-    },
-    devtool: 'source-map',
-    module: {
-        loaders
-    },
-    plugins: [
-        // new webpack.optimize.UglifyJsPlugin({
-        //     sourceMap: true,
-        //     compress: {
-        //         drop_debugger: false
-        //     }
-        // }),
-        new ExtractTextPlugin('styles.css'),
-        new HtmlPlugin({
-            title: 'Loft School sample project',
-            template: './src/templates/index.hbs'
-        }),
-        new CleanWebpackPlugin(['dist'])
-    ]
+  entry: './src/index.js',
+  output: {
+    filename: '[name].js',
+    path: path.resolve('dist')
+  },
+  devtool: 'source-map',
+  module: {
+    loaders
+  },
+  plugins: [
+    // new webpack.optimize.UglifyJsPlugin({
+    //     sourceMap: true,
+    //     compress: {
+    //         drop_debugger: false
+    //     }
+    // }),
+    new ExtractTextPlugin('styles.css'),
+    new HtmlPlugin({
+      title: 'Loft School sample project',
+      template: './src/templates/index.hbs'
+    }),
+    new CleanWebpackPlugin(['dist'])
+  ]
 };

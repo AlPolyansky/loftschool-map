@@ -1,4 +1,5 @@
 import APP from './js/App.js';
+import './scss/app.scss';
 
 const App = new APP();
 

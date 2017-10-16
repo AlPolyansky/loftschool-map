@@ -5,6 +5,8 @@ const _base = new Base();
 export default class Model {
   constructor(mapData) {
     this.mapData = mapData || {};
+    this.map = null;
+    this._clickCords = [];
   }
 
   initMapData(params) {
@@ -17,5 +19,14 @@ export default class Model {
 
     return this.mapData = params;
   }
+
+  set clickCords(value){
+    this._clickCords = value;
+  };
+
+  get clickCords(){
+    return this._clickCords;
+  };
+
 
 }

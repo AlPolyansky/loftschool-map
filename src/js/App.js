@@ -8,6 +8,8 @@ export default class App {
   init() {
     Controller.createMap({
       zoom: 10
+    },function () {
+      Controller.initMapEvents();
     });
   }
 }
